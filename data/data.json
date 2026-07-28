@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Moaz",
+        "email": "moaz@gmail.com",
+        "password": "$2b$10$vPzukd68lgMRq0saP3FlzuuR2DiEpWNhW2oa6ht2HpCKC6ViPB8Bm",
+        "isAdmin": true
+    },
+    {
+        "id": 2,
+        "name": "zeyad mohammed",
+        "email": "zyad@gamil.com",
+        "password": "$2b$10$/wx/nywuFMU6ZU94SuO3JOJEnb.On0598v.phz8Y.yJoTTaKKEMya",
+        "isAdmin": false
+    },
+    {
+        "id": 3,
+        "name": "ahmed said",
+        "email": "ahmed@gmail.com",
+        "password": "$2b$10$5P9tVSePA8ocin3TKzAKNegxDqgf4LLUW7KWfN4gy/MvsIfclNw.m",
+        "isAdmin": false
+    }
+]
