@@ -1,5 +1,4 @@
 const fm = require("./fileManager");
-const { register, login } = require("./auth");
 const user_actions = require("./user_actions");
 const bcrypt = require("bcrypt");
 

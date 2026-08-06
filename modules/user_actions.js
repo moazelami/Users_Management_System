@@ -1,6 +1,4 @@
 const fm = require("./fileManager");
-const { register, login } = require("./auth");
-const bcrypt = require("bcrypt");
 
 // getUserById
 const getUserById =  function(userId){

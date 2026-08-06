@@ -1,5 +1,6 @@
 const fm = require("./fileManager");
 const bcrypt = require("bcrypt");
+const crypto = require("node:crypto");
 
 
 /*
@@ -33,7 +34,7 @@ const register = async function (userName ,email ,password , isAdmin = false) {
                 ? Math.max(...users.map(user => user.id))
                 : 0;
             const newUser = {
-                id: lastId + 1,
+                id: crypto.randomUUID(),
                 name: userName,
                 email,
                 password: hashedPassword,
@@ -57,11 +58,11 @@ const login = async function(email ,password){
     try{
     const users =  fm.readUsers();
     email = email.toLowerCase().trim();
-    const user = users.find(user => user.email === email);
-
     if (!email.trim()) {
         throw new Error("Email is required.");
     }
+    const user = users.find(user => user.email === email);
+
 
     if (!password.trim()) {
         throw new Error("Password is required.");
@@ -75,8 +76,8 @@ const login = async function(email ,password){
     if (!isMatch) {
         throw new Error("Invalid email or password.");
     }
-
-    return user;
+    const { password:hashedPasswordField, ...safeUser } = user;
+    return safeUser;
 
     }catch(err){
         console.error(err.message);
@@ -88,3 +89,6 @@ module.exports = {
     register,
     login,
 };
+
+
+

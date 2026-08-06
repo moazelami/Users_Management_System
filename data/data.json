@@ -19,5 +19,19 @@
         "email": "ahmed@gmail.com",
         "password": "$2b$10$5P9tVSePA8ocin3TKzAKNegxDqgf4LLUW7KWfN4gy/MvsIfclNw.m",
         "isAdmin": false
+    },
+    {
+        "id": "7e717836-86a7-4ddf-8a4c-ef7a1b3877f3",
+        "name": "shoura",
+        "email": "shosho@gmail.com",
+        "password": "$2b$10$oK76O.CUihFxVspuMWTWZeuJSBbyB.9g4dyPafcWdf/HEq2ZgVwtW",
+        "isAdmin": false
+    },
+    {
+        "id": "8607c638-6aac-44c7-a2b3-8adf9f860dbb",
+        "name": "mazen",
+        "email": "mazen@gmail.com",
+        "password": "$2b$10$eSl58uY1fTfuXn6SuaqczOD9JpBfW/NQGTqR9dR0u3e4aKen38bU.",
+        "isAdmin": false
     }
 ]
