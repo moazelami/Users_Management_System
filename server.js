@@ -1,21 +1,4 @@
 
-// ├── createServer() = done
-// │
-// ├── GET /users = done
-// │
-// ├── GET /users/:id = done
-// │
-// ├── PUT /users/:id = done -- Password not hashed from FE view
-// │
-// ├── DELETE /users/:id = done -- user not deleted
-// │
-// ├── POST /login = done
-// │
-// ├── POST /register = done
-// │
-// ├── PATCH /change-password = done
-// │
-// └── PATCH /userUpdate =
 const http = require('node:http');
 const sendResponse = require('./utils/sendResponse');
 const userManager = require('./modules/user_actions');
