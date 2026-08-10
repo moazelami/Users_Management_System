@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const changePassword = async function(userId , oldPassword , newPassword) {
     try {
 
-        const users = fm.readUsers();
+        const users = await fm.readUsers();
         const index = users.findIndex(user => user.id === userId);
 
         if (index === -1)
@@ -27,27 +27,25 @@ const changePassword = async function(userId , oldPassword , newPassword) {
             throw new Error("New password must be different from old password.");
 
         const hashedPassword = await bcrypt.hash(newPassword, 10);
-        users[index].password = hashedPassword
-        fm.writeUsers(users);
+        users[index].password = hashedPassword;
+        await fm.writeUsers(users);
 
         return true;
     }catch (err){
         console.error(err.message);
         return null;
     }
-
-
 }
-//updateProfile
 
-const updateProfile = function (userId, updatedData) {
+//updateProfile
+const updateProfile = async function (userId, updatedData) {
     const safeData = { ...updatedData };
 
     delete safeData.id;
     delete safeData.isAdmin;
     delete safeData.password;
 
-    return user_actions.updateUser(userId, safeData);
+    return await user_actions.updateUser(userId, safeData);
 }
 
 module.exports = {

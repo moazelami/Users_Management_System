@@ -1,17 +1,17 @@
-const fs = require ('node:fs');
+const fs = require ('node:fs/promises');
 
 
-function readUsers() {
+let readUsers = async function () {
 
     return JSON.parse(
-        fs.readFileSync("./data/data.json", "utf8")
+        await fs.readFile("./data/data.json", "utf8")
     );
 
 }
 
-function writeUsers(users) {
+let writeUsers = async function (users) {
 
-    fs.writeFileSync(
+    await fs.writeFile(
         "./data/data.json",
         JSON.stringify(users, null, 4)
     );

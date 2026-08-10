@@ -23,7 +23,7 @@ const register = async function (userName ,email ,password , isAdmin = false) {
             throw new Error('Password must be at least 8 characters');
 
         }
-        const users =  fm.readUsers();
+        const users = await  fm.readUsers();
         email = email.toLowerCase().trim();
         const emailExists = users.find(user => user.email === email);
         if (emailExists) {
@@ -42,7 +42,7 @@ const register = async function (userName ,email ,password , isAdmin = false) {
             }
 
             users.push(newUser);
-            fm.writeUsers(users);
+            await fm.writeUsers(users);
             const {  password: hashedPasswordField, ...safeUser } = newUser;
             return safeUser;
 
@@ -56,7 +56,7 @@ const register = async function (userName ,email ,password , isAdmin = false) {
 const login = async function(email ,password){
 
     try{
-    const users =  fm.readUsers();
+    const users = await fm.readUsers();
     email = email.toLowerCase().trim();
     if (!email.trim()) {
         throw new Error("Email is required.");

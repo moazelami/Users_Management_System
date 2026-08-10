@@ -1,9 +1,9 @@
 const fm = require("./fileManager");
 
 // getUserById
-const getUserById =  function(userId){
+const getUserById = async function(userId){
     try{
-        const users =  fm.readUsers();
+        const users = await fm.readUsers();
         const user = users.find(user => user.id === userId);
 
         if (!user)
@@ -18,8 +18,8 @@ const getUserById =  function(userId){
 }
 
 // getAllUsers
-const getAllUsers = function(){
-     let users = fm.readUsers();
+const getAllUsers = async function(){
+     let users = await fm.readUsers();
      users = users.map(user =>{
         const { password: hashedPasswordField , ...newUser} = user;
         return newUser;
@@ -29,8 +29,8 @@ const getAllUsers = function(){
 }
 
 // updateUser
-const updateUser =  function(userId, updatedData){
-    const users = fm.readUsers();
+const updateUser = async function(userId, updatedData){
+    const users = await fm.readUsers();
     const user = users.find(user => user.id === userId);
 
     if (!user)
@@ -46,20 +46,20 @@ const updateUser =  function(userId, updatedData){
         ...users[index],
         ...updatedData
     }
-    fm.writeUsers(users);
+    await fm.writeUsers(users);
     const { password: hashedPasswordField, ...safeUser} = users[index];
 
     return safeUser;
 }
 // deleteUser
-const deleteUser = function(userId){
-    const users = fm.readUsers();
+const deleteUser = async function(userId){
+    const users = await fm.readUsers();
 
     const updatedUsers = users.filter(user => user.id !== userId);
     if (updatedUsers.length === users.length)
         return null;
 
-    fm.writeUsers(updatedUsers);
+    await fm.writeUsers(updatedUsers);
     return true;
 
 }
