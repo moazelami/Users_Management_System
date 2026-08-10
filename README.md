@@ -1,130 +1,163 @@
-# 👥 Users Management System
+## 🚀 Project Journey
 
-A simple **Node.js** application for managing users with authentication and profile management.
+This project was developed incrementally as I progressed through different **Node.js backend concepts**.
 
-This project was built as a backend practice project to apply fundamental Node.js concepts such as modular architecture, file handling, CRUD operations, password hashing, and authentication.
+Instead of building the final version directly, the application evolved step by step, with each version introducing new concepts and improving the previous implementation.
 
----
+### 🟢 Version 1 — Node.js Fundamentals
 
-## ✨ Features
+The project started as a simple **Node.js application** focused on understanding backend fundamentals.
 
-### Authentication
+At this stage, the application used:
 
-- Register a new user
-- Login with email and password
-- Password hashing using **bcrypt**
-- Prevent duplicate email registration
+* Node.js Modules
+* CommonJS
+* File System (`fs`)
+* JSON file storage
+* CRUD operations
+* Modular architecture
+* Authentication
+* Password hashing with bcrypt
+* Async/Await
 
-### User Management
+Users were stored inside a local JSON file, while the application logic was separated into modules such as:
 
-- Get user by ID
-- Get all users
-- Update user information
-- Delete a user
-
-### Profile Management
-
-- Update profile
-- Change password
-- Protect sensitive fields (`id`, `password`, `isAdmin`) from unauthorized updates
-
-### Data Storage
-
-- Store users inside a local JSON file
-- Read/write data using the Node.js File System
-
----
-
-## 📂 Project Structure
-
-```
-Users_Management_System/
-│
-├── data/
-│   └── data.json
-│
-├── modules/
-│   ├── auth.js
-│   ├── fileManager.js
-│   ├── profile.js
-│   └── user_actions.js
-│
-├── main.js
-├── package.json
-└── README.md
+```text
+auth
+user_actions
+profile
+fileManager
 ```
 
----
-
-## 🛠 Technologies
-
-- Node.js
-- JavaScript (CommonJS)
-- bcrypt
-- File System (fs)
+This version established the core business logic of the application.
 
 ---
 
-## 📌 Implemented Functions
+### 🔵 Version 2 — Native HTTP Server
 
-### Authentication
+After building the core functionality, the project was upgraded to use Node.js's native **`http` module**.
 
-- `register()`
-- `login()`
+The goal was to understand what happens underneath Express and how HTTP servers work at a lower level.
 
-### User Actions
+This version introduced:
 
-- `getUserById()`
-- `getAllUsers()`
-- `updateUser()`
-- `deleteUser()`
+* HTTP Server
+* HTTP Methods
+* Request and Response handling
+* Manual Routing
+* URL Parameters
+* Request Body handling
+* Streams
+* Events
+* JSON parsing
+* Custom response utilities
 
-### Profile
+Routing was initially handled manually using conditions such as:
 
-- `updateProfile()`
-- `changePassword()`
+```js
+if (url === "/users" && method === "GET") {
+    // ...
+}
+```
 
----
+Request bodies were also handled manually using request streams:
 
-## 🔒 Security
+```js
+req.on("data", ...);
 
-- Passwords are hashed using **bcrypt** before being stored.
-- Passwords are never returned when retrieving users.
-- Profile updates cannot modify:
-  - User ID
-  - Password
-  - Admin privileges
+req.on("end", ...);
+```
 
----
-
-## 📖 Concepts Practiced
-
-- Modular Programming
-- CRUD Operations
-- Authentication Basics
-- Password Hashing
-- Error Handling
-- File System Operations
-- JSON Data Persistence
-- Async/Await
+This stage helped build a deeper understanding of how web servers and HTTP requests work before moving to a framework.
 
 ---
 
-## 🔮 Future Improvements
+### 🟠 Version 3 — Express.js
 
-- Express.js REST API
-- MongoDB / MySQL integration
-- JWT Authentication
-- Email Verification
-- Input Validation (Joi)
-- Role-Based Authorization
-- Unit Testing
-- Environment Variables (.env)
+After understanding the fundamentals of the native Node.js HTTP server, the project was migrated to **Express.js**.
+
+The main goal was to replace the manual HTTP handling with Express's abstractions while keeping the existing business logic.
+
+The project now uses:
+
+* Express.js
+* Express Routing
+* REST API design
+* `app.get()`
+* `app.post()`
+* `app.put()`
+* `app.delete()`
+* `app.patch()`
+* Route Parameters
+* `req.params`
+* `req.body`
+* `express.json()`
+* `res.status()`
+* `res.json()`
+* Async Route Handlers
+* Express 404 handling
+
+For example, instead of manually checking:
+
+```js
+if (url === "/users" && method === "GET") {
+    // ...
+}
+```
+
+Express allows the route to be defined directly:
+
+```js
+app.get("/users", async (req, res) => {
+    // ...
+});
+```
+
+The project also moved from a custom response utility to Express's native response methods:
+
+```js
+res.status(200).json({
+    success: true,
+    message: "Users retrieved successfully.",
+    data: users
+});
+```
+
+All implemented API endpoints were tested successfully using **Postman**.
 
 ---
 
-## 👨‍💻 Author
+### 🧩 What Changed Between Versions?
 
-**Moaz Wael Elami**
+The important part of the journey is that the **core business logic remained largely the same**, while the way the application communicates over HTTP evolved.
 
-GitHub: https://github.com/moazelami
+```text
+Version 1
+Node.js Modules
+      ↓
+File System + Business Logic
+      ↓
+CRUD + Authentication
+
+
+Version 2
+Node.js HTTP
+      ↓
+Manual Routing
+      ↓
+Streams + Events
+      ↓
+HTTP API
+
+
+Version 3
+Express.js
+      ↓
+Express Routing
+      ↓
+Middleware
+      ↓
+REST API
+```
+
+Each version was built on top of the previous one, allowing the project to evolve alongside my understanding of Node.js backend development.
