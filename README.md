@@ -154,8 +154,7 @@ Version 3
 Express.js
       ↓
 Express Routing
-      ↓
-Middleware
+
       ↓
 REST API
 ```
